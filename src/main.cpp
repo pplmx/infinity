@@ -1,25 +1,17 @@
 #include "config_parser.h"
 #include <iostream>
 #include <filesystem>
-
-#ifdef _WIN32
-
 #include <stdlib.h>
-
-#endif
 
 namespace fs = std::filesystem;
 
 // Helper function to safely get an environment variable
 std::string get_env_variable(const char *var) {
-    char *val_cstr = nullptr;
-    size_t len = 0;
-    if (_dupenv_s(&val_cstr, &len, var) != 0 || val_cstr == nullptr) {
+    const char *val_cstr = getenv(var);
+    if (val_cstr == nullptr) {
         throw std::runtime_error(std::string("Environment variable not set: ") + var);
     }
-    std::string val(val_cstr);
-    free(val_cstr);
-    return val;
+    return std::string(val_cstr);
 }
 
 int main() {
