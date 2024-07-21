@@ -2,7 +2,6 @@
 
 # Initialize the build environment
 init:
-	@mkdir -p build
 	@cmake -S . -B build
 
 # Build the project
@@ -11,7 +10,7 @@ build: init
 
 # Run the project
 run: build
-	@./build/infinity.exe
+	@./build/Debug/infinity.exe
 
 # Build and run the Docker container
 dev:
