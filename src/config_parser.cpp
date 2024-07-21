@@ -5,34 +5,41 @@
 #include "config_parser.h"
 #include "str_tools.h"
 #include <fstream>
-#include <vector>
+#include <iostream>
 
-using std::ifstream, std::vector;
+using std::ifstream;
+using std::vector;
+using std::string;
 
 ConfigParser::ConfigParser() = default;
 
 ConfigParser::~ConfigParser() = default;
 
-void ConfigParser::load(const char *path) {
+void ConfigParser::load(const std::string &path) {
     ifstream ifs(path);
-    vector<string> lines;
+    if (!ifs.is_open()) {
+        std::cerr << "Error opening file: " << path << std::endl;
+        return;
+    }
+
+    lines.clear();
+
     for (string line; getline(ifs, line);) {
-        // remove the empty line
         line = trim(line);
-        if (line.empty()) {
+
+        if (line.empty() || line.starts_with("#")) {
             continue;
         }
-        // remove the comment line or the content after the sign "#"
-        if (line.starts_with("#")) {
-            continue;
-        }
+
         line = trim_comments(line);
         lines.push_back(line);
-        printf("%s\n", line.c_str());
+        std::cout << line << std::endl;
     }
-    printf("\n\n");
-    for (const auto &line: lines) {
-        printf("%s\n", line.c_str());
-    }
+
     ifs.close();
+
+    std::cout << "\n\n";
+    for (const auto &line: lines) {
+        std::cout << line << std::endl;
+    }
 }

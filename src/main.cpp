@@ -7,13 +7,23 @@ namespace fs = std::filesystem;
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
+
     const char *home = getenv("HOME");
-    auto p = fs::path(home) / fs::path("JetBrains/CLionProjects/infinity/CMakeLists.txt");
-    try {
-        p = canonical(p);
-    } catch (const std::exception &ex) {
-        printf("Canonical parser threw exception: %s.", ex.what());
+    if (!home) {
+        std::cerr << "Error: HOME environment variable not set." << std::endl;
+        return EXIT_FAILURE;
     }
-    ConfigParser::load(p.make_preferred().c_str());
-    return 0;
+
+    fs::path p = fs::path(home) / "JetBrains/CLionProjects/infinity/CMakeLists.txt";
+    try {
+        p = fs::canonical(p);
+    } catch (const std::exception &ex) {
+        std::cerr << "Canonical parser threw exception: " << ex.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+
+    ConfigParser configParser;
+    configParser.load(p.string());
+
+    return EXIT_SUCCESS;
 }
