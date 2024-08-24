@@ -1,34 +1,33 @@
-.PHONY: init build run dev clean
+.PHONY: help build image
+.DEFAULT_GOAL := help
 
-# Initialize the build environment
-init:
-	@cmake -S . -B build
+APP_NAME := infinity
 
-# Build the project
-build: init
-	@cmake --build build
+# compile and build
+build:
+	@xmake
 
-# Run the project
-run: build
-	@./build/Debug/infinity.exe
+# run
+run:
+	@./build/bin/infinity
 
-# Build and run the Docker container
-dev:
-	@docker image build . -t infinity
-	@docker container run --rm infinity
+# build image
+image:
+	@docker image build -t $(APP_NAME) .
 
-# Clean the build artifacts and Docker images
-clean:
-	@rm -rf build
-	@docker image rm infinity -f
-
-# Additional convenience targets
-rebuild: clean build
-
-# For full re-initialization and build
-full-build: clean init build
-
-# Clean all Docker images and containers (use with caution)
-clean-docker:
-	@docker container prune -f
-	@docker image prune -a -f
+# Show help
+help:
+	@echo ""
+	@echo "Usage:"
+	@echo "    make [target]"
+	@echo ""
+	@echo "Targets:"
+	@awk '/^[a-zA-Z\-_0-9]+:/ \
+	{ \
+		helpMessage = match(lastLine, /^# (.*)/); \
+		if (helpMessage) { \
+			helpCommand = substr($$1, 0, index($$1, ":")-1); \
+			helpMessage = substr(lastLine, RSTART + 2, RLENGTH); \
+			printf "\033[36m%-22s\033[0m %s\n", helpCommand,helpMessage; \
+		} \
+	} { lastLine = $$0 }' $(MAKEFILE_LIST)

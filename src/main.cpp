@@ -20,7 +20,7 @@ int main()
     try
     {
         // Get the current executable path
-        const fs::path exe_path = fs::current_path() / "CMakeLists.txt";
+        const fs::path exe_path = fs::current_path() / "../../xmake.lua";
 
         // Load and parse the configuration
         ConfigParser configParser;

@@ -1,26 +1,33 @@
 # infinity
 
-[![Crates.io](https://img.shields.io/crates/v/infinity.svg)](https://crates.io/crates/infinity)
-[![Docs.rs](https://docs.rs/infinity/badge.svg)](https://docs.rs/infinity)
-[![CI](https://github.com/pplmx/infinity/workflows/CI/badge.svg)](https://github.com/pplmx/infinity/actions)
-[![Coverage Status](https://coveralls.io/repos/github/pplmx/infinity/badge.svg?branch=main)](https://coveralls.io/github/pplmx/infinity?branch=main)
+[![CI](https://github.com/your-org-or-username/infinity/workflows/CI/badge.svg)](https://github.com/your-org-or-username/infinity/actions)
+[![Coverage Status](https://coveralls.io/repos/github/your-org-or-username/infinity/badge.svg?branch=main)](https://coveralls.io/github/your-org-or-username/infinity?branch=main)
 
 ## Installation
 
-### Cargo
+### Build
 
-* Install the rust toolchain in order to have cargo installed by following
-  [this](https://www.rust-lang.org/tools/install) guide.
-* run `cargo install infinity`
+- Ensure you have a C++ compiler installed (e.g., `g++`, `clang++`).
+
+- Install [XMake](https://xmake.io/#/guide/installation) and any necessary dependencies.
+
+- Clone the repository:
+
+    ```sh
+    git clone https://github.com/your-org-or-username/infinity.git
+    cd infinity
+    make build
+    ./build/bin/infinity
+    ```
 
 ## License
 
 Licensed under either of
 
- * Apache License, Version 2.0
-   ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
- * MIT license
-   ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+- Apache License, Version 2.0
+  ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license
+  ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
 
 at your option.
 

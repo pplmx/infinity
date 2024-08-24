@@ -1,0 +1,11 @@
+service:
+    my_awesome_project:
+        build: .
+        image: infinity
+
+networks:
+    my_awesome_project-net:
+        name: my_awesome_project-net
+        ipam:
+            config:
+                -   subnet: 172.16.238.0/24

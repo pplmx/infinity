@@ -1,6 +1,6 @@
 # Contribution guidelines
 
-First off, thank you for considering contributing to infinity.
+First off, thank you for considering contributing to `infinity`.
 
 If your contribution is not straightforward, please first discuss the change you
 wish to make by creating a new issue before making the change.
@@ -8,7 +8,7 @@ wish to make by creating a new issue before making the change.
 ## Reporting issues
 
 Before reporting an issue on the
-[issue tracker](https://github.com/pplmx/infinity/issues),
+[issue tracker](https://github.com/your-org-or-username/infinity/issues),
 please check that it has not already been reported by searching for some related
 keywords.
 
@@ -19,7 +19,7 @@ Try to do one pull request per change.
 ### Updating the changelog
 
 Update the changes you have made in
-[CHANGELOG](https://github.com/pplmx/infinity/blob/main/CHANGELOG.md)
+[CHANGELOG](CHANGELOG.md)
 file under the **Unreleased** section.
 
 Add the changes of your pull request to one of the following subsections,
@@ -39,42 +39,12 @@ If the required subsection does not exist yet under **Unreleased**, create it!
 
 ### Set up
 
-This is no different than other Rust projects.
+This is no different from other C++ projects.
 
 ```shell
-git clone https://github.com/pplmx/infinity
+git clone https://github.com/your-org-or-username/infinity
 cd infinity
-cargo test
+make test
 ```
 
 ### Useful Commands
-
-- Build and run release version:
-
-  ```shell
-  cargo build --release && cargo run --release
-  ```
-
-- Run Clippy:
-
-  ```shell
-  cargo clippy --all-targets --all-features --workspace
-  ```
-
-- Run all tests:
-
-  ```shell
-  cargo test --all-features --workspace
-  ```
-
-- Check to see if there are code formatting issues
-
-  ```shell
-  cargo fmt --all -- --check
-  ```
-
-- Format the code in the project
-
-  ```shell
-  cargo fmt --all
-  ```

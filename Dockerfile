@@ -1,6 +1,6 @@
 # BUILDING
 FROM rockylinux:9 AS builder
-LABEL author="Mystic <215104920@qq.com>"
+LABEL author="Mystic"
 WORKDIR /app
 
 # build deps
@@ -19,8 +19,7 @@ RUN dnf upgrade --refresh -y && \
 
 COPY . .
 
-WORKDIR ./build
-RUN cmake .. && cmake --build . --target infinity --config Release --parallel 8
+RUN cmake -B build && cmake --build build --target infinity --config Release --parallel 8
 
 # DEPLOYING
 FROM rockylinux:9-minimal

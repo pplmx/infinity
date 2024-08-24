@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
     push:
         tags:
-            - '*'
+            - '^v[0-9]+\.[0-9]+\.[0-9]+.*$'
 
 jobs:
     docker:
@@ -32,13 +32,13 @@ jobs:
                     context: .
                     load: true
                     tags: |
-                        ghcr.io/pplmx/infinity:latest
-                        ghcr.io/pplmx/infinity:0.1.0-beta
+                        ghcr.io/your-org-or-username/infinity:latest
+                        ghcr.io/your-org-or-username/infinity:${GITHUB_REF_NAME:1}
             -
                 name: Test it before Push
                 run: |
-                    docker run --rm ghcr.io/pplmx/infinity:latest
-                    docker run --rm ghcr.io/pplmx/infinity:0.1.0-beta
+                    docker run --rm ghcr.io/your-org-or-username/infinity:latest
+                    docker run --rm ghcr.io/your-org-or-username/infinity:${GITHUB_REF_NAME:1}
             -
                 name: Build and Push
                 uses: docker/build-push-action@v6
@@ -47,5 +47,5 @@ jobs:
                     platforms: linux/amd64,linux/arm64
                     push: true
                     tags: |
-                        ghcr.io/pplmx/infinity:latest
-                        ghcr.io/pplmx/infinity:0.1.0-beta
+                        ghcr.io/your-org-or-username/infinity:latest
+                        ghcr.io/your-org-or-username/infinity:${GITHUB_REF_NAME:1}
