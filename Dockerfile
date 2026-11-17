@@ -1,5 +1,5 @@
 # BUILDING
-FROM rockylinux:9 AS builder
+FROM rockylinux:10 AS builder
 LABEL author="Mystic"
 WORKDIR /app
 
@@ -22,7 +22,7 @@ COPY . .
 RUN cmake -B build && cmake --build build --target infinity --config Release --parallel 8
 
 # DEPLOYING
-FROM rockylinux:9-minimal
+FROM rockylinux:10-minimal
 
 COPY --from=builder /app/build/infinity /infinity
 
